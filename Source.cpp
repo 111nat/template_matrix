@@ -1,8 +1,10 @@
 #include <iostream>
-using namespace std;
+
+
+template<typename T>
 class Point 
 {
-	int x, y, z;
+	T x, y, z;
 public:
 	//конструктор без параметров
 	Point()
@@ -13,7 +15,7 @@ public:
 	}
 
 	//конструктор с параметрами
-	Point(int x, int y, int z)
+	Point(T x, T y, T z)
 	{
 		this->x = x;
 		this->y = y;
@@ -76,14 +78,14 @@ public:
 	}
 	
 	//перегрузка оператора <<
-	friend std::ostream& operator<<(std::ostream& stream, const Point& other);
+	friend std::ostream& operator<<(std::ostream& stream, const Point& other)
+	{
+		stream << other.x << " " << other.y << " " << other.z;
+		return stream;
+	}
 };
 
-std::ostream& operator<<(std::ostream& stream, const Point& other)
-{
-	stream << other.x<<" "<<other.y<<" "<<other.z;
-	return stream;
-}
+
 
 
 
@@ -184,7 +186,12 @@ public:
 
 int main()
 {
-	
+	Point<double> z(1, 2, 3);
+	Point<double> w(3, 2, 1);
+	Point<double> y;
+	y = z + w;
+	std::cout << y;
+
 	Matrix<int> a(2,3);
 	a.filling_arr_int();
 	std::cout << a<<std::endl;
